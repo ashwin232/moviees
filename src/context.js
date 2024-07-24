@@ -4,8 +4,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 
-const Api_URL=`https://www.omdbapi.com/?&apikey=5ddcde9c&s=titanic`
-
+export const Api_URL=`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`
 
 const Appcontext=React.createContext();
 
@@ -14,17 +13,18 @@ const Appcontext=React.createContext();
 const Appprovider=({children})=>{
 
 const[isloading,setloading]=useState(true);
-const [Movie,setmovies]=useState([]);
+const [movie,setmovies]=useState([]);
 const[isError,setError]=useState({show:"false",msg:""})
+const[query,setquery]=useState("")
 
 const getMovies=async(url)=>{
     try{
         const res=await fetch(url);
         const data= await res.json();
         console.log(data);
-        if(data.response==="True"){
+        if(data.Response==="True"){
             setloading(false);
-            setmovies(data.Search);
+             setmovies(data.Search);
         }
     }
     catch(error){
@@ -35,9 +35,9 @@ const getMovies=async(url)=>{
     }
 }
 
-useEffect(()=>{getMovies(Api_URL)},[])
+useEffect(()=>{getMovies(`${Api_URL}&s=${query}`);},[query])
 
-    return <Appcontext.Provider value={{Movie,isloading,isError,}}>
+    return <Appcontext.Provider value={{movie,isloading,isError,setquery,query}}>
         {children}
     </Appcontext.Provider>
 };

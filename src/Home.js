@@ -1,12 +1,12 @@
-import Moviedata from './Moviedata';
+import Movies from './Movies';
 import Search from './Search';
 
 
 const Home = () => {
   return (
     <>
-    <Search/>
-    <Moviedata/>
+    <Search />
+   <Movies />
     </>
   );
 }
