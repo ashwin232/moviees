@@ -1,14 +1,14 @@
+import Moviedata from './Moviedata';
 import Search from './Search';
-import Movies from './Movies';
+
 
 const Home = () => {
-   // const name=useContext(Appcontext);
   return (
     <>
     <Search/>
-    <Movies/>
+    <Moviedata/>
     </>
-  )
+  );
 }
 
 export default Home

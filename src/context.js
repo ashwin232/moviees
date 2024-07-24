@@ -14,7 +14,7 @@ const Appcontext=React.createContext();
 const Appprovider=({children})=>{
 
 const[isloading,setloading]=useState(true);
-const [movie,setmovies]=useState([]);
+const [Movie,setmovies]=useState([]);
 const[isError,setError]=useState({show:"false",msg:""})
 
 const getMovies=async(url)=>{
@@ -37,7 +37,7 @@ const getMovies=async(url)=>{
 
 useEffect(()=>{getMovies(Api_URL)},[])
 
-    return <Appcontext.Provider value={{isloading,isError,movie}}>
+    return <Appcontext.Provider value={{Movie,isloading,isError,}}>
         {children}
     </Appcontext.Provider>
 };
